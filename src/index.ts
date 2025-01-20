@@ -36,19 +36,23 @@ const alarm: Alarm = {
   weight: 2,
 }
 
-type AlarmWithoutWeight = Omit<Alarm, 'weight'>
+type AlarmWithoutWeight = Omit<Alarm, 'weight'> // 移除单个属性
 
 const alarmC: AlarmWithoutWeight = {
   price: 1,
 }
 
-type AlarmExtra = AlarmWithoutWeight & { date: Date } & { mode?: 'modeOne' }
-type AlarmExtraPlus = AlarmExtra & { outTime: Date }
+type AlarmExtra = AlarmWithoutWeight & { date: Date } & { mode?: 'modeOne' } // 添加属性然后重命名这个分类
+type AlarmExtraPlus = AlarmExtra & { outTime: Date } // 添加属性
 
 const alarmD: AlarmExtra = {
   price: 1,
   date: new Date(),
 }
 
-type AlarmMini = Omit<AlarmExtraPlus, 'mode' | 'date' | 'outTime'>
+type AlarmMini = Omit<AlarmExtraPlus, 'mode' | 'date' | 'outTime'> // 移除多个属性
 const alarmE: AlarmMini = { price: 10 }
+
+type AlarmOptional = Partial<AlarmExtra> // make all properties optional  设置所有属性都是可选的
+
+const alarmF: AlarmOptional = {}
